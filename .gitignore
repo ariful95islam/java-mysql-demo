@@ -2,3 +2,7 @@
 build
 out
 .gradle*
+1_start_mysql.sh
+2_mysql_gui.sh
+3_docker-compose.yaml
+6_docker-compose-with-app.yaml
