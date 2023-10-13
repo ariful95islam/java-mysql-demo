@@ -86,14 +86,14 @@ kubectl port-forward svc/phpmyadmin-service 8081:8081
 
 ## Cleanup
 
-To stop a container separately:
-```bash
-docker stop [container id]
+- For a quick purge:
+```bash 
+minikube stop
+minikube delete
 ```
-
-To stop a container using docker-compose:
+- To stop containers individually
 ```bash
-docker-compose -f docker-compose.yaml down
+kubectl delete -f [name].yaml
 ```
 
 ## Contributions
