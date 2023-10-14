@@ -6,3 +6,8 @@ out
 2_mysql_gui.sh
 3_docker-compose.yaml
 6_docker-compose-with-app.yaml
+java-app.yaml
+java-app-ingress.yaml
+db-config.yaml
+db-secret.yaml
+Dockerfile

@@ -1,6 +1,6 @@
 # Java-MySQl Application using Docker Containers
 
-This repository contains a Java-MySQL application which can be deployed using K8s locally. 
+This repository contains a Java-MySQL application which can be deployed using a helm chart. 
 
 ## Directory Structure
 
@@ -44,36 +44,16 @@ kubectl create secret docker-registry my-registry-key \
 --docker-password=$DOCKER_PASSWORD \
 --docker-email=$DOCKER_EMAIL
 
-kubectl apply -f db-secret.yaml
-kubectl apply -f db-config.yaml
-kubectl apply -f java-app.yaml
+helm install java-app java-app
+#add --dry-run after install to check if everything is working without installing
 ```
-- If going down this route - you will need to then run the java app
-```bash
-gradle build
-export DB_USER=admin
-export DB_PWD=adminpass
-export DB_SERVER=localhost
-export DB_NAME=team-member-projects
-java -jar build/libs/docker-exercises-project-1.0-SNAPSHOT.jar
-```
-- REMEMBER TO CHANGE CREDENTIALS TO MATCH MySQL DB
+
+- access on my-java-app.com
 
 4. **Optional - Deploy phpmyadmin for database gui**:
 ```bash
 kubectl apply -f phpmyadmin.yaml
 ```
-
-4. **Create Ingress rule for domain name access**:
-- If you want users to access the application via domain name you will need to create an ingress rule, which requires deploying Ingress Controller (Load Balancer)
-```bash
-minikube addons enable ingress
-```
-- set the host name in java-app-ingress.yaml line 9 to my-java-app.com
-- get minikube ip address with command minikube ip, example: 192.168.64.27
-- add ```bash 192.168.64.27 my-java-app.com``` in /etc/hosts file (use sudo or vim)
-- create ingress component: kubectl apply -f java-app-ingress.yaml
-- access application from browser on address: my-java-app.com
 
 5. **Acessing phpmyadmin via portforward**:
 - Step 4 allowed you to gain access to the java-app via a domain name 
@@ -93,7 +73,9 @@ minikube delete
 ```
 - To stop containers individually
 ```bash
-kubectl delete -f [name].yaml
+helm uninstall java-app
+#then remove the mysql containers
+kubectl delete -f mysql-chart-values-minikube.yaml
 ```
 
 ## Contributions
