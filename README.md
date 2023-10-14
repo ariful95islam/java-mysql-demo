@@ -56,7 +56,7 @@ kubectl apply -f phpmyadmin.yaml
 ```
 
 5. **Acessing phpmyadmin via portforward**:
-- Step 4 allowed you to gain access to the java-app via a domain name 
+- Step 3 allowed you to gain access to the java-app via a domain name 
 - However, the database gui doesn't need an ingress configuration as it is not designed to be easily accessible by a user
 - You can use portforwarding to open up access for you local machine via:
 ```bash
