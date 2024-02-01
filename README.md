@@ -1,4 +1,4 @@
-# Java-MySQl Application using Docker Containers
+# Java-MySQL Application using Docker Containers
 
 This repository contains a Java-MySQL application which can be deployed using Docker. 
 
